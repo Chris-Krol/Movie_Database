@@ -1,0 +1,23 @@
+{
+  "name": "Movie_Database",
+  "version": "1.0.0",
+  "description": "Movie Database for a school project for COMP 2406",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chris-Krol/Movie_Database.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chris-Krol/Movie_Database/issues"
+  },
+  "homepage": "https://github.com/Chris-Krol/Movie_Database#readme",
+  "dependencies": {
+    "pug": "^3.0.2"
+  }
+}
