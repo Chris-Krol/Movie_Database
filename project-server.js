@@ -18,13 +18,13 @@ function send500(response){
 const server = http.createServer(function (request, response) {
     if(request.method === "GET"){
         if(request.url === "/" || request.url === "/index.html"){
-            let data = pug.renderFile("views/pages/index.pug");
+            let data = pug.renderFile("views/pages/index.pug", {});
             response.statusCode = 200;
             response.end(data);
             return;
-            
         }else if(request.url === "/myprofile"){
             //put user profile page request here
+            let data = pug.renderFile("views/pages/myprofile.pug", {userName: "Chris", contributing: true});
             response.statusCode = 200;
             response.end(data);
             return;
