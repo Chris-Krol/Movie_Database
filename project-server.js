@@ -21,6 +21,36 @@ let users = [
     }
 ]
 
+// start of temporary tester variables for template displaying
+let nextID=1;
+let movieData = require("./Data/movie-data-10.json");
+let movies = {};
+movieData.forEach(movie => {
+	movies[nextID] = movie;
+    nextID++;
+});
+
+let TemporaryActors = movies[1].Actors;
+let TempWriters = movies[1].Writer;
+let TempDirectors = movies[1].Director;
+
+let testMovie = movies[1];
+let testreview = [
+    {
+        identifier:"1",
+        UserName:"Chris",
+        Rating:"2",
+        TheReview:"this sux"
+    },
+    {        
+        identifier:"2",
+        UserName:"Abby",
+        Rating:"1",
+        TheReview:"i just want to not be burnt out for one online semester and not constantly want to drop out but here we are anyways"}
+];
+
+// end :) 
+
 
 function send404(response){
     response.statusCode = 404;
@@ -81,6 +111,45 @@ const server = http.createServer(function (request, response) {
             response.statusCode = 200;
             response.end(data);
             return;
+        }else if(request.url === "/movies/MoviePreview"){
+            let data = pug.renderFile("views/pages/MoviePreview.pug", {currMovie: testMovie, reviewsOfCurrentMovie: testreview, actors: TemporaryActors, writer: TempWriters, director: TempDirectors});
+			response.statusCode = 200;
+			response.end(data);
+			return;
+        }else if(request.url === "/stylesheet.css"){
+			fs.readFile("./stylesheet.css", function(err, data){
+				if(err){
+					send500(response);
+					return;
+				}
+				response.statusCode = 200;
+				response.setHeader("Content-Type", "text/css");
+				response.end(data);
+				return;
+			});
+        }else if(request.url === "/MoviePreviewJS.js"){
+			fs.readFile("./MoviePreviewJS.js", function(err, data){
+				if(err){
+					send500(response);
+					return;
+				}
+				response.statusCode = 200;
+				response.setHeader("Content-Type", "application/json");
+				response.end(data);
+				return;
+			});
+        }else if(request.url.startsWith("/movies/")){
+            // this should be done better with query etc but this is temporary
+            //extract movie id, find it, send it, for now this will send the same movie regardless of id
+            //let MovieID = request.uel.slice(8);
+            //console.log("movie ID requested is: ")
+            //console.log(MovieID);
+            let data = pug.renderFile("views/pages/MoviePreview.pug", {currMovie: testMovie, reviewsOfCurrentMovie: testreview, actors: TemporaryActors, writer: TempWriters, director: TempDirectors});
+			response.statusCode = 200;
+			response.end(data);
+			return;
+        }else{
+            send404(response);
         }
     }
 
