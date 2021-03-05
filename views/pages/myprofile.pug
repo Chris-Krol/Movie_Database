@@ -1,18 +1,18 @@
 html
     head 
-        title= "Movie Database - " + userName
+        title Movie Database - #{user.userid}
 body 
     include ../partials/header
 
     div#main 
         br
-        b= "Username: " + userName
+        b Username: #{user.userid}
         br
         br
         div#account_permission
-            if contributing = true
+            if user.contributor === true
                 b AccountType: Contributor
-            if contributing = false 
+            if user.contributor === false 
                 b AccountType: Regular
             br
             br
@@ -23,25 +23,52 @@ body
         div#follow_people 
             b People You Follow: 
             br
+            each p in user.pfollow 
+                button(type="button" id=p) Unfollow
+                | 
+                a(href="/persons/Dwayne Johnson") #{p}
+                br
+            br
             br
 
         div#follow_user 
             b Users You Follow: 
             br
+            each u in user.ufollow 
+                button(type="button" id=u) Unfollow
+                | 
+                a(href="/users/" + user.userid) #{u}
+                br
             br
 
         div#watched_movies
             b Movies You've Watched:
             br
+            each m in user.watched 
+                button(type="button" id=m) Remove
+                | 
+                a(href="/movies/Jumnaji: The Next Level") #{m}
+                br
             br
 
         div#recommended 
             b Recommended Movies:
             br
+            each r in user.recommended 
+                a(href="/movies/Jumnaji: The Next Level") #{r}
+                br
             br
 
         div#notifications 
             b Notifications: 
+            br
+            each n in user.notifications 
+                button(type="button" id=n.title + "delete") Delete
+                | 
+                button(type="button" id=n.title + "view") View
+                | 
+                | #{n.note}
+                br
         
         script(src="/myprofile.js")
 
