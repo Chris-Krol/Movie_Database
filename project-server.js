@@ -10,9 +10,9 @@ function send404(response){
 }
 
 function send500(response){
-	response.statusCode = 500;
-	response.write("Server error.");
- 	response.end();
+    response.statusCode = 500;
+    response.write("Server error.");
+    response.end();
 } 
 
 const server = http.createServer(function (request, response) {
@@ -30,6 +30,18 @@ const server = http.createServer(function (request, response) {
             return;
         }else if(request.url === "/users/otheruser"){
             //put other user profile page request here
+            response.statusCode = 200;
+            response.end(data);
+            return;
+        }else if(request.url === "/advancedsearch"){
+            //put advanced search page request here
+            let data = pug.renderFile("views/pages/advancedsearch.pug", {});
+            response.statusCode = 200;
+            response.end(data);
+            return;
+        }else if(request.url === "/contribute"){
+            //put contributer page request here
+            let data = pug.renderFile("views/pages/contribute.pug", {});
             response.statusCode = 200;
             response.end(data);
             return;

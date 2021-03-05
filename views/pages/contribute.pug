@@ -1,0 +1,47 @@
+html
+    head 
+        title Movie Database 
+body 
+    include ../partials/header
+
+    div#main
+        div#addperson 
+        h2 Add a new Person:
+        br
+        b Name:
+        input(type="text" id="new_person")
+        br
+        button(type="button" id="add_person") Add
+        br
+        br
+        hr
+        br
+        div#addmovie 
+        h2 Add a new Movie:
+        br
+        b Title:
+        input(type="text" id="title_in")
+        br
+        b Release Year:
+        input(type="text" id="release_in")
+        br
+        b Runtime:
+        input(type="text" id="length_in")
+        br
+        b Plot:
+        input(type="text" id="plot_in")
+        br
+        b Genre:
+        input(type="text" id="genre_in")
+        br
+        b Director:
+        input(type="text" id="director_in")
+        br
+        b Writer:
+        input(type="text" id="writer_in")
+        br
+        b Actor:
+        input(type="text" id="actor_in")
+        br
+        
+        button(type="button" id="add_movie") Add

@@ -1,0 +1,19 @@
+html
+    head 
+        title Movie Database Search
+body 
+    include ../partials/header
+
+    div#main 
+        br
+        h2 Advanced Search:
+        b Movie Title:
+        input(type="text" id="search_title")
+        br
+        b Actor Name:
+        input(type="text" id="search_actor")
+        br
+        b Genre:
+        input(type="text" id="password_genre")
+        br
+        button(type="button" id="search") Search
