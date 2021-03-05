@@ -1,0 +1,47 @@
+html
+    head 
+        title= "Movie Database - " + userName
+body 
+    include ../partials/header
+
+    div#main 
+        br
+        b= "Username: " + userName
+        br
+        br
+        div#account_permission
+            if contributing = true
+                b AccountType: Contributor
+            if contributing = false 
+                b AccountType: Regular
+            br
+            br
+            button(type="button" id="permission") Change Account
+            br
+            br
+
+        div#follow_people 
+            b People You Follow: 
+            br
+            br
+
+        div#follow_user 
+            b Users You Follow: 
+            br
+            br
+
+        div#watched_movies
+            b Movies You've Watched:
+            br
+            br
+
+        div#recommended 
+            b Recommended Movies:
+            br
+            br
+
+        div#notifications 
+            b Notifications: 
+        
+        script(src="/myprofile.js")
+
