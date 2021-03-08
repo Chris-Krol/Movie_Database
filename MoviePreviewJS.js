@@ -12,8 +12,9 @@ const init = function(){
     let prevSearched = [];
     let CurrentlyLoaded = '';
 
+
     let reviews = 0;
-    let reviewList = [];
+    let reviewList = []; // the review list should be GET /movies/movienameorid/reviews
     addReviewButton.onclick=addReview;
 }
 
@@ -91,6 +92,9 @@ const collapse = function(number){
 }
 
 
+
+//this should in the future be sending the review to the server 
+// POST to /movies/movieNameOrID/Review 
 const addReview = function(){
     //get data
     const usernameInputed = document.getElementById('userNameID').value.trim();
@@ -115,6 +119,8 @@ const addReview = function(){
     //add to the list 
     //render again    
 }
+
+
 
 init();
 

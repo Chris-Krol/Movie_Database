@@ -115,3 +115,12 @@ body {
     width:60%;
     margin-left:20%;
 }
+.CentredHyperLinks{
+    text-align:center;
+    font-family:'Lato';
+    color:white;
+    font-size:40;
+    margin-top:-20px;
+    width:60%;
+    margin-left:42%;
+}
