@@ -26,7 +26,7 @@ body
             each p in user.pfollow 
                 button(type="button" id=p) Unfollow
                 | 
-                a(href="/persons/Dwayne Johnson") #{p}
+                a(href="/persons/" + p) #{p}
                 br
             br
             br
@@ -47,7 +47,7 @@ body
             each m in user.watched 
                 button(type="button" id=m) Remove
                 | 
-                a(href="/movies/Jumnaji: The Next Level") #{m}
+                a(href="/movies/" + m) #{m}
                 br
             br
 
@@ -55,7 +55,7 @@ body
             b Recommended Movies:
             br
             each r in user.recommended 
-                a(href="/movies/Jumnaji: The Next Level") #{r}
+                a(href="/movies/" + r) #{r}
                 br
             br
 
