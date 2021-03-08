@@ -1,0 +1,34 @@
+head
+    link(rel='stylesheet' href='/stylesheet.css')
+    title #{currHuman.Name} 
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+#descriptor
+    h1.Titles #{currHuman.Nitle}
+    button(type="button" id="followButton") follow
+    button(type="button" id="unfollowButton") unfollow
+
+    br 
+    if currHuman.Directed
+        h1.titles Directed: 
+        each drcted in currHuman.Directed
+            a.CentredHyperLinks#gnres(href="/movies/" + drcted.mID) #{drcted.Title}
+            br
+    if currHuman.Written
+        h1.Titles Written:
+        each wrt in currHuman.Written 
+            a.CentredHyperLinks#drctors(href="/movies/" + wrt.mID) #{wrt.Title}
+            br
+    if currHuman.Acted
+        h1.Titles Performed In:
+        each act in currHuman.Acted
+            a.CentredHyperLinks#actors(href="/movies/" + act.mID) #{act.Title}
+            br
+    h1.Titles Top Five Collaberators: 
+    each pclb in currHuman.Collab
+        a.CentredHyperLinks#mvies(href="/persons/" + pclb.pID) #{pclb.Name}
+        br
+
+
+
+ 
+

@@ -29,6 +29,7 @@ let movieData = require("./Data/movie-data-10.json");
 let movies = {};
 movieData.forEach(movie => {
 	movies[nextID] = movie;
+    movies[nextID].mID = nextID;
     nextID++;
 });
 
@@ -49,6 +50,27 @@ let testreview = [
 
 let recommendedMovies = [];
 for(i = 0; i < 6; i++){recommendedMovies[i]=movies[i+3];};
+
+
+let testHuman = {
+    Name: "Ryan Reynolds",
+    Directed: [{Title: "Deadpool 2", mID: "7678"},
+                {Title: "Deadpool 1", mID: "7677"},
+                {Title: "Wolverine", mID: "7623"},
+            ],
+    Acted: [{Title: "Deadpool 2", mID: "7678"},
+            {Title: "Deadpool 1", mID: "7677"},
+            {Title: "A love story", mID: "7123"},],
+    Written: [{Title: "Deadpool 2", mID: "7678"},
+            {Title: "Deadpool 1", mID: "7677"},
+            {Title: "Bad Xmen Movie 23", mID: "1125"},],
+    Collab: [{Name: "The Rock", pID: "231"},
+            {Name: "Ellie white", pID: "2123"},
+            {Name: "Abby Quentin", pID: "2111"},
+            ]
+
+};
+
 // end :) 
 
 
@@ -116,6 +138,11 @@ const server = http.createServer(function (request, response) {
 			response.statusCode = 200;
 			response.end(data);
 			return;
+        }else if(request.url === "/persons/PeoplePreview"){
+            let data = pug.renderFile("views/pages/peoplePreview.pug", {currHuman: testHuman});
+			response.statusCode = 200;
+			response.end(data);
+			return;
         }else if(request.url === "/stylesheet.css"){
 			fs.readFile("./stylesheet.css", function(err, data){
 				if(err){
@@ -145,6 +172,12 @@ const server = http.createServer(function (request, response) {
             //console.log("movie ID requested is: ")
             //console.log(MovieID);
             let data = pug.renderFile("views/pages/MoviePreview.pug", {currMovie: testMovie, reviewsOfCurrentMovie: testreview, recMovies: recommendedMovies});
+			response.statusCode = 200;
+			response.end(data);
+			return;
+        }else if(request.url.startsWith("/persons/")){
+            // this should be done better with query etc but this is temporary
+            let data = pug.renderFile("views/pages/peoplePreview.pug", {currHuman: testHuman});
 			response.statusCode = 200;
 			response.end(data);
 			return;
