@@ -9,20 +9,30 @@ head
     p.PlotAndCast#Plot #{currMovie.Plot}
     p#RunAndRelease Release Year: #{currMovie.Year} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Runtime:#{currMovie.Runtime}
     .divider
-    h1.Titles Director(s) 
-    each drt in director 
-        a.PlotAndCast#cast(href="/people/" + drt) #{drt}
+    h1.titles Genres: 
+    each gnr in currMovie.Genre
+        a.CentredHyperLinks#gnres(href="/movies?genre=" + gnr) #{gnr}
         br
-    h1.Titles Actors
-    each act in actors
-        a.PlotAndCast#cast(href="/people/" + act) #{act}
+    h1.Titles Director(s):
+    each drt in currMovie.Director 
+        a.CentredHyperLinks#drctors(href="/people/" + drt) #{drt}
         br
-    h1.Titles Writer(s) 
-    each wrt in writer 
-        a.PlotAndCast#cast(href="/people/" + wrt) #{wrt}
+    h1.Titles Actors:
+    each act in currMovie.Actors
+        a.CentredHyperLinks#actors(href="/people/" + act) #{act}
+        br
+    h1.Titles Writer(s):
+    each wrt in currMovie.Writer 
+        a.CentredHyperLinks#wrters(href="/people/" + wrt) #{wrt}
+        br
+    h1.Titles Similar Movies: 
+    each rmvi in recMovies
+        a.CentredHyperLinks#mvies(href="/movies/" + rmvi.Title) #{rmvi.Title}
         br
 
 
+
+ 
 #revdiv
     each review in reviewsOfCurrentMovie
         div.containertop.hiddendropdown(id=review.identifier)

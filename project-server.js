@@ -2,6 +2,9 @@ const http = require('http');
 const pug = require("pug");
 const fs = require("fs");
 
+
+// temporary data for project check in 
+
 let users = [
     {userid: "Israel Adesanya",
     password: "Hello123",
@@ -21,7 +24,6 @@ let users = [
     }
 ]
 
-// start of temporary tester variables for template displaying
 let nextID=1;
 let movieData = require("./Data/movie-data-10.json");
 let movies = {};
@@ -29,10 +31,6 @@ movieData.forEach(movie => {
 	movies[nextID] = movie;
     nextID++;
 });
-
-let TemporaryActors = movies[1].Actors;
-let TempWriters = movies[1].Writer;
-let TempDirectors = movies[1].Director;
 
 let testMovie = movies[1];
 let testreview = [
@@ -49,6 +47,8 @@ let testreview = [
         TheReview:"i just want to not be burnt out for one online semester and not constantly want to drop out but here we are anyways"}
 ];
 
+let recommendedMovies = [];
+for(i = 0; i < 6; i++){recommendedMovies[i]=movies[i+3];};
 // end :) 
 
 
@@ -112,7 +112,7 @@ const server = http.createServer(function (request, response) {
             response.end(data);
             return;
         }else if(request.url === "/movies/MoviePreview"){
-            let data = pug.renderFile("views/pages/MoviePreview.pug", {currMovie: testMovie, reviewsOfCurrentMovie: testreview, actors: TemporaryActors, writer: TempWriters, director: TempDirectors});
+            let data = pug.renderFile("views/pages/MoviePreview.pug", {currMovie: testMovie, reviewsOfCurrentMovie: testreview, recMovies: recommendedMovies});
 			response.statusCode = 200;
 			response.end(data);
 			return;
@@ -144,7 +144,7 @@ const server = http.createServer(function (request, response) {
             //let MovieID = request.uel.slice(8);
             //console.log("movie ID requested is: ")
             //console.log(MovieID);
-            let data = pug.renderFile("views/pages/MoviePreview.pug", {currMovie: testMovie, reviewsOfCurrentMovie: testreview, actors: TemporaryActors, writer: TempWriters, director: TempDirectors});
+            let data = pug.renderFile("views/pages/MoviePreview.pug", {currMovie: testMovie, reviewsOfCurrentMovie: testreview, recMovies: recommendedMovies});
 			response.statusCode = 200;
 			response.end(data);
 			return;
