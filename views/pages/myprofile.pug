@@ -1,28 +1,28 @@
 html
     head 
         title Movie Database - #{user.userid}
+        link(rel='stylesheet' href='/stylesheet.css')
 body 
     include ../partials/header
 
     div#main 
         br
-        b Username: #{user.userid}
+        b.sectionHeader Username: #{user.userid}
         br
         br
         div#account_permission
             if user.contributor === true
-                b AccountType: Contributor
+                b.text AccountType: Contributor
             if user.contributor === false 
-                b AccountType: Regular
+                b.text AccountType: Regular
             br
             br
             button(type="button" id="permission") Change Account
             br
             br
-
-        div#follow_people 
-            b People You Follow: 
+            b.sectionHeader People You Follow: 
             br
+        div#profilePageButton
             each p in user.pfollow 
                 button(type="button" id=p) Unfollow
                 | 
@@ -32,8 +32,9 @@ body
             br
 
         div#follow_user 
-            b Users You Follow: 
+            b.sectionHeader Users You Follow: 
             br
+        div#profilePageButton
             each u in user.ufollow 
                 button(type="button" id=u) Unfollow
                 | 
@@ -42,8 +43,9 @@ body
             br
 
         div#watched_movies
-            b Movies You've Watched:
+            b.sectionHeader Movies You've Watched:
             br
+        div#profilePageButton
             each m in user.watched 
                 button(type="button" id=m) Remove
                 | 
@@ -52,22 +54,24 @@ body
             br
 
         div#recommended 
-            b Recommended Movies:
+            b.sectionHeader Recommended Movies:
             br
+        div#profilePageButton
             each r in user.recommended 
                 a(href="/movies/" + r) #{r}
                 br
             br
 
         div#notifications 
-            b Notifications: 
+            b.sectionHeader Notifications: 
             br
+        div#profilePageButton
             each n in user.notifications 
                 button(type="button" id=n.title + "delete") Delete
                 | 
                 button(type="button" id=n.title + "view") View
                 | 
-                | #{n.note}
+                | #{n.note}.
                 br
         
         script(src="/myprofile.js")

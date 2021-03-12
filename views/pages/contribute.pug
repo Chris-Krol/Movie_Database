@@ -1,47 +1,50 @@
 html
     head 
         title Movie Database 
+        link(rel='stylesheet' href='/stylesheet.css')
 body 
     include ../partials/header
 
     div#main
-        div#addperson 
-        h2 Add a new Person:
+        h2.sectionHeader Add a new Person:
         br
-        b Name:
+    #inputBox
+        b.text Name:
         input(type="text" id="new_person" required)
         br
+    #centeredButton
         button(type="button" id="add_person") Add
         br
         br
         hr
         br
         div#addmovie 
-        h2 Add a new Movie:
+        h2.sectionHeader Add a new Movie:
         br
-        b Title:
+    #inputBox
+        b.text Title:
         input(type="text" id="title_in" required)
         br
-        b Release Year:
+        b.text Release Year:
         input(type="text" id="release_in" required)
         br
-        b Runtime:
+        b.text Runtime:
         input(type="text" id="length_in" required)
         br
-        b Plot:
+        b.text Plot:
         input(type="text" id="plot_in" required)
         br
-        b Genre:
+        b.text Genre:
         input(type="text" id="genre_in" required)
         br
-        b Director:
+        b.text Director:
         input(type="text" id="director_in" required)
         br
-        b Writer:
+        b.text Writer:
         input(type="text" id="writer_in" required)
         br
-        b Actor:
+        b.text Actor:
         input(type="text" id="actor_in" required)
         br
-        
+    #centeredButton
         button(type="button" id="add_movie") Add

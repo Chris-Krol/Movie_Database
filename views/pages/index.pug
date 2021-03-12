@@ -1,18 +1,22 @@
 html
     head 
         title Movie Database 
+        link(rel='stylesheet' href='/stylesheet.css')
 body 
     include ../partials/header
 
     div#main
-        h1 Welcome to the Movie Database! 
+        h1.titles Welcome to the Movie Database! 
         br
         br
-        b Username: 
+    #inputBox
+        b.text Username: 
         input(type="text" id="userName_in")
         br
-        b Password:
+        b.text Password:
         input(type="password" id="password_in")
         br
-        button(type="button" id="log_in") Log In
+    #centeredButton
+        button(type="button" id="log_in") Log In 
+        | &nbsp;&nbsp;&nbsp;
         button(type="button" id="sign_up") Sign Up

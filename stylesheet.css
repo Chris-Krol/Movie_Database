@@ -1,5 +1,5 @@
 body {
-    background-color:#212121;
+    background-color: rgb(41, 39, 39);
     overflow-x:hidden;
     background-attachment: fixed;
 }
@@ -18,6 +18,9 @@ body {
     width:100%;
     text-align:center;
     z-index:2;
+}
+#centeredButton {
+    text-align:center;
 }
 .dropdownbox {
     background-color:#323232;
@@ -106,6 +109,12 @@ body {
     color:rgb(202, 11, 11);
     font-size:50;
 }
+.sectionHeader {
+    text-align:center;
+    font-family:'Lato';
+    color:rgb(202, 11, 11);
+    font-size:35;
+}
 .PlotAndCast {
     text-align:center;
     font-family:'Lato';
@@ -117,10 +126,36 @@ body {
 }
 .CentredHyperLinks{
     text-align:center;
+    text-decoration: none;
     font-family:'Lato';
-    color:white;
-    font-size:40;
+    color:rgba(245, 245, 245, 0.897);
+    font-size:24;
     margin-top:-20px;
     width:60%;
     margin-left:42%;
+}
+#header {
+    text-align:center;
+}
+.header{
+    text-decoration: none;
+    font-family:'Lato';
+    color:rgba(245, 245, 245, 0.897);
+    font-size:24;
+}
+.text {
+    font-family:'Lato';
+    color:rgba(245, 245, 245, 0.897);
+}
+#inputBox {
+    text-align:right;
+    margin-right:45%;
+    line-height:150%;
+}
+#main {
+    text-align:center;
+}
+#profilePageButton{
+    text-align: left;
+    margin-left: 45%;
 }

@@ -1,19 +1,22 @@
 html
     head 
         title Movie Database Search
+        link(rel='stylesheet' href='/stylesheet.css')
 body 
     include ../partials/header
 
     div#main 
         br
-        h2 Advanced Search:
-        b Movie Title:
+        h2.sectionHeader Advanced Search:
+    #inputBox
+        b.text Movie Title:
         input(type="text" id="search_title")
         br
-        b Actor Name:
+        b.text Actor Name:
         input(type="text" id="search_actor")
         br
-        b Genre:
+        b.text Genre:
         input(type="text" id="password_genre")
         br
+    #centeredButton
         button(type="button" id="search") Search
