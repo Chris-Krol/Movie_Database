@@ -9,6 +9,6 @@ function getResults(){
         }
     };
 
-    xhttp.open("GET", "http://localhost:3000/searchResults?", true);
+    xhttp.open("GET", "http://localhost:3000/search/results", true);
     xhttp.send();
 }
