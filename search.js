@@ -1,5 +1,5 @@
 
-document.getElementById("search").addEventListener("click", moviesearch);
+document.getElementById("search").addEventListener("click", getResults);
 
 function getResults(){
     let xhttp = new XMLHttpRequest();

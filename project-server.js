@@ -116,6 +116,17 @@ const server = http.createServer(function (request, response) {
             response.statusCode = 200;
             response.end(data);
             return;
+        }else if(request.url === "/search.js"){
+			fs.readFile("./search.js", function(err, data){
+				if(err){
+					send500(response);
+					return;
+				}
+				response.statusCode = 200;
+				response.setHeader("Content-Type", "application/json");
+				response.end(data);
+				return;
+			});
         }else if(request.url.startsWith("/searchResults?")){
             //put user profile page request here
             let data = pug.renderFile("views/pages/SearchResultsPreview.pug", {user: users[0]});
