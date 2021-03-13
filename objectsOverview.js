@@ -106,4 +106,9 @@ let onePerson = {
 };
 
 
+let SearchResults = [{mID: "456", Title: "Bloodhound"}, {Title: "Deadpool 2", mID: "7678"},
+                    {Title: "Deadpool 1", mID: "7677"},
+                    {Title: "A love story", mID: "7123"}];
+
+
 
