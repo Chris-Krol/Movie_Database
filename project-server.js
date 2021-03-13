@@ -71,6 +71,12 @@ let testHuman = {
 
 };
 
+
+let SearchResults = [{mID: "456", Title: "Bloodhound"}, {Title: "Deadpool 2", mID: "7678"},
+                    {Title: "Deadpool 1", mID: "7677"},
+                    {Title: "A love story", mID: "7123"}];
+
+
 // end :) 
 
 
@@ -140,6 +146,11 @@ const server = http.createServer(function (request, response) {
 			return;
         }else if(request.url === "/persons/PeoplePreview"){
             let data = pug.renderFile("views/pages/peoplePreview.pug", {currHuman: testHuman});
+			response.statusCode = 200;
+			response.end(data);
+			return;
+        }else if(request.url === "/search/results"){
+            let data = pug.renderFile("views/pages/searchResults.pug", {results: SearchResults});
 			response.statusCode = 200;
 			response.end(data);
 			return;
