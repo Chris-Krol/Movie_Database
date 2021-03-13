@@ -135,7 +135,7 @@ const server = http.createServer(function (request, response) {
 			});
         }else if(request.url.startsWith("/searchResults?")){
             //put user profile page request here
-            let data = pug.renderFile("views/pages/SearchResultsPreview.pug", {user: users[0]});
+            let data = pug.renderFile("views/pages/SearchResults.pug", {user: users[0]});
             response.statusCode = 200;
             response.end(data);
             return;
