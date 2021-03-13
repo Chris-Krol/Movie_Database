@@ -26,7 +26,7 @@ body
             each p in user.pfollow 
                 button(type="button" id=p) Unfollow
                 | 
-                a(href="/persons/" + p) #{p}
+                a.textLink(href="/persons/" + p) #{p}
                 br
             br
             br
@@ -38,7 +38,7 @@ body
             each u in user.ufollow 
                 button(type="button" id=u) Unfollow
                 | 
-                a(href="/users/" + user.userid) #{u}
+                a.textLink(href="/users/" + user.userid) #{u}
                 br
             br
 
@@ -49,7 +49,7 @@ body
             each m in user.watched 
                 button(type="button" id=m) Remove
                 | 
-                a(href="/movies/" + m) #{m}
+                a.textLink(href="/movies/" + m) #{m}
                 br
             br
 
@@ -58,7 +58,7 @@ body
             br
         div#profilePageButton
             each r in user.recommended 
-                a(href="/movies/" + r) #{r}
+                a.textLink(href="/movies/" + r) #{r}
                 br
             br
 
@@ -71,7 +71,7 @@ body
                 | 
                 button(type="button" id=n.title + "view") View
                 | 
-                | #{n.note}.
+                | #{n.note}
                 br
         
         script(src="/myprofile.js")

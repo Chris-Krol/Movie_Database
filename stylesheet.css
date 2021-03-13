@@ -132,7 +132,15 @@ body {
     font-size:24;
     margin-top:-20px;
     width:60%;
-    margin-left:42%;
+    margin-left:45%;
+}
+.textLink {
+    font-family:'Lato';
+    text-decoration: none;
+    color:rgba(245, 245, 245, 0.897);
+    width:60%;
+    font-size: 24;
+    margin-top:-20px;
 }
 #header {
     text-align:center;
@@ -145,6 +153,7 @@ body {
 }
 .text {
     font-family:'Lato';
+    text-decoration: none;
     color:rgba(245, 245, 245, 0.897);
 }
 #inputBox {
@@ -158,4 +167,7 @@ body {
 #profilePageButton{
     text-align: left;
     margin-left: 45%;
+    font-family: 'Lato';
+    font-size: 24;
+    color: rgba(245, 245, 245, 0.897);
 }

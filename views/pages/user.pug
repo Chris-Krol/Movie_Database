@@ -1,0 +1,46 @@
+html
+    head 
+        title Movie Database - #{user.userid}
+        link(rel='stylesheet' href='/stylesheet.css')
+body 
+    include ../partials/header
+
+    div#main 
+        br
+        br
+        div#account_permission
+            if user.contributor === true
+                b.sectionHeader Username: #{user.userid} (Contributor)
+            if user.contributor === false 
+                b.sectionHeader Username: #{user.userid}(Regular User)
+        br
+        button(type="button" id="follow") follow
+        br
+        br
+        b.sectionHeader Users #{user.userid} Follows: 
+        br
+    div#profilePageButton
+        each u in user.ufollow 
+            button(type="button" id=p) follow
+            | 
+            a.textLink(href="/users/" + user.userid) #{u}
+            br
+
+        br
+    div#main
+        b.sectionHeader Movies #{user.userid} Has Watched:
+        br
+    div#profilePageButton
+        each m in user.watched 
+            a.textLink(href="/movies/" + m) #{m}
+            br
+        br
+
+    div#main 
+        b.sectionHeader Reviews Written By #{user.userid}: 
+        br
+    div#profilePageButton
+        each r in user.reviews 
+            a.textLink(href="/movies/" + r.title) #{r.title}
+            br
+    

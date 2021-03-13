@@ -20,6 +20,11 @@ let users = [
         {title: "Jumanji: The Next Level", note: "Karen Gillan has come out with a new movie"},
         {title: "Jumanji: The Next Level", note: "Nick Jonas has come out with a new movie"},
         {title: "Jumanji: The Next Level", note: "Amanda Nunes has added a new review"}
+    ],
+    reviews: [
+        {title: "Iron Man", review: "The best movie in the history of movies!!!"},
+        {title: "Jumanji: The Next Level", review: "Hilarious :)"}
+
     ]
     }
 ]
@@ -99,28 +104,12 @@ const server = http.createServer(function (request, response) {
             response.statusCode = 200;
             response.end(data);
             return;
-        }else if(request.url === "/users/"){
-            //extracting the username to check if they exist and if they do to return the HTML
-            //put other user profile page request here
-            let pid = request.url.slice(7);
-            try{
-                let found = products.find(element => element.userid === pid);
-                if(found){
-                    console.log("Found: " + found);
-                    let data = pug.renderFile()
-                    response.statusCode = 200;
-                    response.end(data);
-                    return;
-                }else{
-                    send404(response);
-                    return;
-                }
-            }catch{
-                console.log(err);
-                console.log("Exception casting pid");
-                send404(response);
-                return;
-            }
+        }else if(request.url.startsWith("/users/")){
+            //put example user page here
+            let data = pug.renderFile("views/pages/user.pug", {user: users[0]});
+            response.statusCode = 200;
+            response.end(data);
+            return;
         }else if(request.url === "/advancedsearch"){
             //put advanced search page request here
             let data = pug.renderFile("views/pages/advancedsearch.pug", {});
