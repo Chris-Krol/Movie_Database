@@ -12,9 +12,9 @@ body
         br
         div#account_permission
             if user.contributor === true
-                b.text AccountType: Contributor
+                b.textLink AccountType: Contributor
             if user.contributor === false 
-                b.text AccountType: Regular
+                b.textLink AccountType: Regular
             br
             br
             button(type="button" id="permission") Change Account

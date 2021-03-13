@@ -116,6 +116,12 @@ const server = http.createServer(function (request, response) {
             response.statusCode = 200;
             response.end(data);
             return;
+        }else if(request.url.startsWith("/searchResults?")){
+            //put user profile page request here
+            let data = pug.renderFile("views/pages/SearchResultsPreview.pug", {user: users[0]});
+            response.statusCode = 200;
+            response.end(data);
+            return;
         }else if(request.url === "/contribute"){
             //put contributer page request here
             let data = pug.renderFile("views/pages/contribute.pug", {});
