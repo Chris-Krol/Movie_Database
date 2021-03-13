@@ -10,9 +10,9 @@ html
         each res in results
             a.CentredHyperLinks#actors(href="/movies/" + res.mID) #{res.Title}
             br
-    if results.length = 0 
+    if results.length == 0
         h1.Titles NO MOVIES FOUND. 
-        a.CentredHyperLinks#actors(href="/search") go back to search page!
+        a.CentredHyperLinks#actors(href="/advancedsearch") go back to search page!
         
 
 

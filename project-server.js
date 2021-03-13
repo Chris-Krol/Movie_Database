@@ -149,9 +149,10 @@ const server = http.createServer(function (request, response) {
 			response.statusCode = 200;
 			response.end(data);
 			return;
-        }else if(request.url.startsWith("/search/results")){
+        }else if(request.url === "/search/results"){
             let data = pug.renderFile("views/pages/searchResults.pug", {results: SearchResults});
 			response.statusCode = 200;
+            response.setHeader("Content-Type", "text/html");
 			response.end(data);
 			return;
         }else if(request.url === "/stylesheet.css"){
