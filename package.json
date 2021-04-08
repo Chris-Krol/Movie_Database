@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Chris-Krol/Movie_Database#readme",
   "dependencies": {
+    "fs": "0.0.1-security",
     "pug": "^3.0.2"
   }
 }

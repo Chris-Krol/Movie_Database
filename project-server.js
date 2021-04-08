@@ -1,7 +1,7 @@
 const http = require('http');
 const pug = require("pug");
 const fs = require("fs");
-
+const express = require("express");
 
 // temporary data for project check in 
 
@@ -99,17 +99,31 @@ function send500(response){
 
 const server = http.createServer(function (request, response) {
     if(request.method === "GET"){
+
+
+
+
+        // done 
         if(request.url === "/" || request.url === "/index.html"){
             let data = pug.renderFile("views/pages/index.pug", {});
             response.statusCode = 200;
             response.end(data);
             return;
+        // done 
+
+
+
+        // later 
         }else if(request.url === "/myprofile"){
             //put user profile page request here
             let data = pug.renderFile("views/pages/myprofile.pug", {user: users[0]});
             response.statusCode = 200;
             response.end(data);
             return;
+        // later 
+
+
+
         }else if(request.url.startsWith("/users/")){
             //put example user page here
             let data = pug.renderFile("views/pages/user.pug", {user: users[0]});
