@@ -9,7 +9,6 @@
 const express = require('express');
 const path = require('path');
 const fs = require("fs");
-const faker = require('faker');
 let router = express.Router();
 
 //Requests for /movies
@@ -98,7 +97,6 @@ function queryParser(req, res, next){
 //Loads a movie and adds it to request object
 function getMovie(req, res, next){
 	let id = req.params.id;
-	let fileName = path.join(".", req.app.locals.config.movieDir, id + ".json");
 	if(fs.existsSync(fileName)){
 		fs.readFile(fileName, "utf-8", function(err, data){
 			if(err){
@@ -117,14 +115,14 @@ function getMovie(req, res, next){
 //Saves a movie using the request body
 //Users for updating movies with a PUT request
 function saveMovie(req, res, next){
-	let id = req.params.id;
-	let fileName = path.join(".", req.app.locals.config.movieDir, id + ".json");
-	if(fs.existsSync(fileName)){
-		fs.writeFileSync(fileName, JSON.stringify(req.body));
-		res.status(200).send("Movie saved.");
-	}else{
-		res.status(404).send("Could not find movie.");
-	}
+	// let id = req.params.id;
+	// let fileName = path.join(".", req.app.locals.config.movieDir, id + ".json");
+	// if(fs.existsSync(fileName)){
+	// 	fs.writeFileSync(fileName, JSON.stringify(req.body));
+	// 	res.status(200).send("Movie saved.");
+	// }else{
+	// 	res.status(404).send("Could not find movie.");
+	// }
 }
 
 //Helper function for determining whether a movie
@@ -132,86 +130,86 @@ function saveMovie(req, res, next){
 // min price, and max price. All must be true.
 //Again, different systems may have different logic
 function movieMatch(movie, query){
-	let nameCheck = !query.name || movie.name.toLowerCase().includes(query.name.toLowerCase());
-	let minPriceCheck = !query.minprice || movie.price >= query.minprice;
-	let maxPriceCheck = !query.maxprice || movie.price <= query.maxprice;
-	return nameCheck && minPriceCheck && maxPriceCheck;
+	// let nameCheck = !query.name || movie.name.toLowerCase().includes(query.name.toLowerCase());
+	// let minPriceCheck = !query.minprice || movie.price >= query.minprice;
+	// let maxPriceCheck = !query.maxprice || movie.price <= query.maxprice;
+	// return nameCheck && minPriceCheck && maxPriceCheck;
 }
 
 //Load the correct movies into the result object
 //Works similar to user router, but has different checks
 // for movie matching (min price, max price)
 function loadMovies(req, res, next){
-	let results = [];
-	let startIndex = (req.query.page-1) * Number(req.query.limit);
-	let endIndex = startIndex + Number(req.query.limit);
-	let countLoaded = 0;
-	let failed = false;
+	// let results = [];
+	// let startIndex = (req.query.page-1) * Number(req.query.limit);
+	// let endIndex = startIndex + Number(req.query.limit);
+	// let countLoaded = 0;
+	// let failed = false;
 
-	//Read all files in the directory
-	fs.readdir(path.join(".", req.app.locals.config.movieDir), function(err, items) {
-		let count = 0;
-		//For each movie file
-		for (let fileNum=0; fileNum < items.length; fileNum++) {
-			//Read the movies data and create an object
-			let data = fs.readFileSync(path.join(".", req.app.locals.config.movieDir, items[fileNum]));
-			let movie = JSON.parse(data);
+	// //Read all files in the directory
+	// fs.readdir(path.join(".", req.app.locals.config.movieDir), function(err, items) {
+	// 	let count = 0;
+	// 	//For each movie file
+	// 	for (let fileNum=0; fileNum < items.length; fileNum++) {
+	// 		//Read the movies data and create an object
+	// 		let data = fs.readFileSync(path.join(".", req.app.locals.config.movieDir, items[fileNum]));
+	// 		let movie = JSON.parse(data);
 
-			//If the movie matches the query parameters
-			if(movieMatch(movie, req.query)){
-				//Add to results if we are at the correct index
-				if(count >= startIndex){
-					results.push(movie);
-				}
+	// 		//If the movie matches the query parameters
+	// 		if(movieMatch(movie, req.query)){
+	// 			//Add to results if we are at the correct index
+	// 			if(count >= startIndex){
+	// 				results.push(movie);
+	// 			}
 
-				//Stop if we have the correct number of results
-				if(results.length >= req.query.limit){
-					break;
-				}
+	// 			//Stop if we have the correct number of results
+	// 			if(results.length >= req.query.limit){
+	// 				break;
+	// 			}
 
-				count++;
-			}
+	// 			count++;
+	// 		}
 
-		}
-		//Set the property to be used in the response
-		res.movies = results;
-		next();
-	});
+	// 	}
+	// 	//Set the property to be used in the response
+	// 	res.movies = results;
+	// 	next();
+	// });
 }
 
 //Sends an array of movies in response to a request
 //Uses the movies property added by previous middleware
 //Sends either JSON or HTML
 function respondMovies(req, res, next){
-	res.format({
-		"text/html": () => {res.render("pages/movies", {movies: res.movies, qstring: req.qstring, current: req.query.page } )},
-		"application/json": () => {res.status(200).json(res.movies)}
-	});
-	next();
+	// res.format({
+	// 	"text/html": () => {res.render("pages/movies", {movies: res.movies, qstring: req.qstring, current: req.query.page } )},
+	// 	"application/json": () => {res.status(200).json(res.movies)}
+	// });
+	// next();
 }
 
 //Create a new random movie in response to POST /movies
 //Again, in a real system, we would likely provide a page
 // to specify a new movies information
 function createMovie(req, res, next){
-	//See the request body
-	//Really, it would contain the movie specification
-	//We can check the data, validate it, create the new movies
-	console.log(req.body);
+	// //See the request body
+	// //Really, it would contain the movie specification
+	// //We can check the data, validate it, create the new movies
+	// console.log(req.body);
 
-	//Generate a random movie
-	let p = {};
-	p.id = req.app.locals.config.nextMovieID;
-	p.name = faker.commerce.movieName();
-	p.price = faker.commerce.price();
-	p.reviews = [];
-	p.buyers = [];
+	// //Generate a random movie
+	// let p = {};
+	// p.id = req.app.locals.config.nextMovieID;
+	// p.name = faker.commerce.movieName();
+	// p.price = faker.commerce.price();
+	// p.reviews = [];
+	// p.buyers = [];
 
-	//Update config and save the Movie to a file
-	req.app.locals.config.nextMovieID++;
-	fs.writeFileSync("config.json", JSON.stringify(req.app.locals.config));
-	fs.writeFileSync(path.join(".", req.app.locals.config.movieDir, p.id + ".json"), JSON.stringify(p));
-	res.status(201).send(p);
+	// //Update config and save the Movie to a file
+	// req.app.locals.config.nextMovieID++;
+	// fs.writeFileSync("config.json", JSON.stringify(req.app.locals.config));
+	// fs.writeFileSync(path.join(".", req.app.locals.config.movieDir, p.id + ".json"), JSON.stringify(p));
+	// res.status(201).send(p);
 }
 
 //Create and send representation of a single movie

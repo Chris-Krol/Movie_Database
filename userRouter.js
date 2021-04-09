@@ -10,7 +10,9 @@ let router = express.Router();
 //all of this is get to /users/ 
 router.get("/", queryParser);
 router.get("/", loadUsers);
-router.get("/", respondUser);
+router.get("/", respondUsers);
+
+router.get("/myUser/", respondCurrentSession);
 
 // post for when creating a user 
 router.post("/", express.json(), createUser);
@@ -243,6 +245,25 @@ function sendSingleUser(req, res, next){
 
 	next();
 }
+
+
+function respondCurrentSession(req, res, next){
+	//for now this is getting the default person but it should get the user that is current 
+	req.user = req.app.locals.users[0];
+	res.format({
+		"application/json": function(){	
+			res.status(200).json(req.user);
+		},
+		"text/html": () => {res.render("pages/user", {user: req.user} )},
+
+	});
+
+	next();
+}
+
+
+
+
 
 //Export the router object, so it can be mounted in the store-server.js file
 module.exports = router;

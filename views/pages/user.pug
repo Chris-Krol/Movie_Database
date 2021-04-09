@@ -21,9 +21,18 @@ body
         br
     div#profilePageButton
         each u in user.ufollow 
-            button(type="button" id=p) follow
+            button(type="button" id=u.pID) follow
             | 
-            a.textLink(href="/users/" + user.userid) #{u}
+            a.textLink(href="/users/" + u.uID) #{u.Name}
+            br
+        br
+        b.sectionHeader People #{user.userid} Follows: 
+        br
+    div#profilePageButton
+        each p in user.pfollow 
+            button(type="button" id=p.pID) follow
+            | 
+            a.textLink(href="/person/" + p.pID) #{p.Name}
             br
 
         br
@@ -32,7 +41,7 @@ body
         br
     div#profilePageButton
         each m in user.watched 
-            a.textLink(href="/movies/" + m) #{m}
+            a.textLink(href="/movies/" + m.mID) #{m.Title}
             br
         br
 
